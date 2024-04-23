@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(cuid())
+
+  name String
+  bio  String?
+
+  email String @unique
+
+  image String?
+
+  linkedin String? @unique
+  github   String? @unique
+  twitter  String? @unique
+
+  Tags String[]
+
+  quests Quest[]
+
+  Bid Bid[]
+
+  upadtedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Bid {
+  id String @id @default(cuid())
+
+  Quest   Quest  @relation(fields: [questId], references: [id])
+  questId String
+
+  bidAmount Int
+
+  time DateTime
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
+
+  upadtedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+enum QuestStatus {
+  Open
+  Closed
+  Assigned
+}
+
+model Quest {
+  id String @id @default(cuid())
+
+  title       String
+  description String
+  issueLink   String @unique
+
+  status QuestStatus
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
+
+  bids Bid[]
+
+  price Int
+
+  tags String[]
+
+  completionTime DateTime
+
+  upadtedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
