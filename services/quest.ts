@@ -22,6 +22,20 @@ export async function findOne(where: Prisma.QuestWhereInput) {
   try {
     const quest = await prisma.quest.findFirst({
       where: where,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        issueLink: true,
+        status: true,
+        owner: true,
+        ownerId: true,
+        bids: true,
+        price: true,
+        tags: true,
+        upadtedAt: true,
+        createdAt: true,
+      },
     });
 
     if (!quest) {
@@ -41,6 +55,20 @@ export async function findMany(where?: Prisma.QuestWhereInput) {
   try {
     const quest = await prisma.quest.findMany({
       where: where,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        issueLink: true,
+        status: true,
+        owner: true,
+        ownerId: true,
+        bids: true,
+        price: true,
+        tags: true,
+        upadtedAt: true,
+        createdAt: true,
+      },
     });
 
     if (!quest) {
