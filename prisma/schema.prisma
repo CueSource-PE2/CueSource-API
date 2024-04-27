@@ -78,8 +78,6 @@ model Quest {
 
   tags String[]
 
-  completionTime DateTime
-
   upadtedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
