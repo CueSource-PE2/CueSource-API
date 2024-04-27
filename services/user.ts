@@ -22,6 +22,21 @@ export async function findOne(where: Prisma.UserWhereInput) {
   try {
     const user = await prisma.user.findFirst({
       where: where,
+      select: {
+        id: true,
+        name: true,
+        bio: true,
+        email: true,
+        image: true,
+        linkedin: true,
+        github: true,
+        twitter: true,
+        Tags: true,
+        quests: true,
+        Bid: true,
+        upadtedAt: true,
+        createdAt: true,
+      },
     });
 
     if (!user) {
@@ -41,6 +56,21 @@ export async function findMany(where?: Prisma.UserWhereInput) {
   try {
     const user = await prisma.user.findMany({
       where: where,
+      select: {
+        id: true,
+        name: true,
+        bio: true,
+        email: true,
+        image: true,
+        linkedin: true,
+        github: true,
+        twitter: true,
+        Tags: true,
+        quests: true,
+        Bid: true,
+        upadtedAt: true,
+        createdAt: true,
+      },
     });
 
     if (!user) {

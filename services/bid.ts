@@ -22,6 +22,17 @@ export async function findOne(where: Prisma.BidWhereInput) {
   try {
     const bid = await prisma.bid.findFirst({
       where: where,
+      select: {
+        id: true,
+        bidAmount: true,
+        Quest: true,
+        questId: true,
+        time: true,
+        owner: true,
+        ownerId: true,
+        upadtedAt: true,
+        createdAt: true,
+      },
     });
 
     if (!bid) {
@@ -41,6 +52,17 @@ export async function findMany(where?: Prisma.BidWhereInput) {
   try {
     const bid = await prisma.bid.findMany({
       where: where,
+      select: {
+        id: true,
+        bidAmount: true,
+        Quest: true,
+        questId: true,
+        time: true,
+        owner: true,
+        ownerId: true,
+        upadtedAt: true,
+        createdAt: true,
+      },
     });
 
     if (!bid) {

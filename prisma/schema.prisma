@@ -45,7 +45,7 @@ model Bid {
 
   bidAmount Int
 
-  time DateTime
+  time String
 
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String
@@ -67,7 +67,7 @@ model Quest {
   description String
   issueLink   String @unique
 
-  status QuestStatus
+  status QuestStatus @default(Open)
 
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String
