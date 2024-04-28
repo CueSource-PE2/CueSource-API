@@ -24,6 +24,7 @@ export async function findOne(where: Prisma.UserWhereInput) {
       where: where,
       select: {
         id: true,
+        authId: true,
         name: true,
         bio: true,
         email: true,
@@ -58,6 +59,7 @@ export async function findMany(where?: Prisma.UserWhereInput) {
       where: where,
       select: {
         id: true,
+        authId: true,
         name: true,
         bio: true,
         email: true,
