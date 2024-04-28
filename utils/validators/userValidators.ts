@@ -1,6 +1,7 @@
 import * as z from "zod";
 
 export const UserCreateProps = z.object({
+  authId: z.string(),
   name: z.string(),
   bio: z.string().optional(),
   email: z.string().email(),
