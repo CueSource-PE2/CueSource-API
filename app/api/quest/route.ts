@@ -11,15 +11,32 @@ export async function POST(req: Request) {
       });
     }
 
-    const [success, query] = await services.quest.create(parsedBody.data);
+    const [success, bid] = await services.quest.create(parsedBody.data);
 
     if (!success) {
-      return new Response(JSON.stringify({ error: query }), { status: 500 });
+      return new Response(JSON.stringify({ error: bid }), { status: 500 });
     }
 
-    return new Response(JSON.stringify({ user: query }), { status: 201 });
+    return new Response(JSON.stringify({ user: bid }), { status: 201 });
   } catch (error) {
     console.log("Error in POST /api/quest: ", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const [success, quests] = await services.quest.findMany();
+
+    if (!success) {
+      return new Response(JSON.stringify({ error: quests }), { status: 500 });
+    }
+
+    return new Response(JSON.stringify({ quests }), { status: 200 });
+  } catch (error) {
+    console.log("Error in GET /api/quest: ", error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
       status: 500,
     });
