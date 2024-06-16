@@ -9,7 +9,7 @@ export const UserCreateProps = z.object({
   linkedin: z.string().url().optional(),
   github: z.string().url().optional(),
   twitter: z.string().url().optional(),
-  tags: z.array(z.string()).optional(),
+  Tags: z.array(z.string()).optional(),
 });
 
 export type UserCreateProps = z.infer<typeof UserCreateProps>;
